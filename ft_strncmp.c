@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:13:42 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/16 13:10:44 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/07/22 13:34:38 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	a;
+
 	a = 0;
 	while ((s1[a] || s2[a]) != '\0' && a < n)
 	{

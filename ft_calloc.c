@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 19:32:27 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/16 05:31:56 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/07/22 13:39:10 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,22 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	size_t	a;
+	char	*ptr;
+
 	a = 0;
-	size_t *ptr = NULL;
-	while(a < count)
+	if (count == 0 || size == 0)
 	{
-		ptr[a] = (size_t)malloc(size);
+		ptr = malloc(0);
+		ptr[0] = '\0';
+		return (ptr);
+	}
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	while (a < count * size)
+	{
 		ptr[a] = 0;
 		a++;
 	}
-	if (!ptr)
-		return (NULL);
-	else
-		return (ptr);
+	return (ptr);
 }
