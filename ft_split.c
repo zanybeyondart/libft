@@ -1,101 +1,78 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
-char	**ft_split(char const *s, char c)
+#include "libft.h"
+
+int	chk_c(const char *s, char c)
+{
+	int a;
+	a = ft_strlen(s);
+	if (s[a -1] == c)
+		return(1);
+	return(0);
+}
+
+char *fun(char *s)
 {
 	int a = 0;
+	char *s2;
+	while(s[a] != '\0')
+	a++;
+	a++;
+	s2 = (char*) malloc (sizeof(char) * a);
+	ft_strlcpy(s2, s, a);
+	return(s2);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char *s2;
+	int len = strlen(s);
+	int a = 0;
 	int b = 0;
-	int i = 0;
+	int d = 0;
 	char **result;
-	char *string;
-	string = (char*)malloc (sizeof(char));
-	result = (char**) malloc (sizeof(char*) * 2);
-	while(s[a] != c && s[a] != '\0')
+	s2 = (char*) malloc (sizeof(char) * (len + 1));
+	if (!s2)
+	return(NULL);
+	ft_strlcpy(s2, s, len + 1);
+	while(a < len)
 	{
-		string[i] = s[a];
-		a++;
-		i++;
+	if (s2[a] == c)
+	s2[a] = '\0';
+	a++;
 	}
-	string[i] = '\0';
-	i = 0;
-	result[0] = string;
-	b++;
+	a = 0;
+	while(s2[a] == '\0')
+	a++;	
+	b = a;
+	while(b <= len - (chk_c(s, c)))
+	{
+		if(s2[b] == '\0')
+		d++;
+		b++;
+	}
+	result = (char**) malloc (sizeof(char*) * (d));
+	if (!result)
+	return (NULL);
+	b = 0;
+	while(a < len)
+	{
+		result[b] = fun(s2 + a);
+		b++;
+		while (s2[a] != '\0')
+		a++;
+		a++;
+	}
 	return(result);
 }
 
-// int	ft_count(char const *s, char c)
-// {
-// 	int	i;
-// 	int	counter;
-
-// 	i = 0;
-// 	counter = 0;
-// 	while (s[i] != '\0')
-// 	{
-// 		if (s[i] == c)
-// 			i++;
-// 		else
-// 		{
-// 			counter++;
-// 			while (s[i] != c && s[i] != '\0')
-// 				i++;
-// 		}
-// 	}
-// 	return (counter);
-// }
-
-// char	*ft_add_word(char const *s, int start, int end)
-// {
-// 	int		i;
-// 	char	*word;
-
-// 	word = malloc((end - start + 1) * sizeof(char));
-// 	if (!word)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < end - start)
-// 	{
-// 		word[i] = s[start + i];
-// 		i++;
-// 	}
-// 	word[i] = '\0';
-// 	return (word);
-// }
-
-// char	**ft_split(char const *s, char c)
-// {
-// 	int		var[3];
-// 	char	**result;
-
-// 	if (!s)
-// 		return (NULL);
-// 	result = malloc((ft_count(s, c) + 1) * sizeof(char *));
-// 	if (!result)
-// 		return (NULL);
-// 	var[0] = 0;
-// 	var[1] = 0;
-// 	var[2] = 0;
-// 	while (s[var[0]] != '\0')
-// 	{
-// 		if (s[var[0]] != c)
-// 		{
-// 			var[2] = var[0];
-// 			while (s[var[0]] != c && s[var[0]] != '\0')
-// 				var[0]++;
-// 			result[var[1]++] = ft_add_word(s, var[2], var[0]);
-// 		}
-// 		else
-// 			var[0]++;
-// 	}
-// 	result[var[1]] = NULL;
-// 	return (result);
-// }
-
 int main()
 {
-	char *string[] = {ft_split("zainali", 'i')[0],ft_split("zainali", 'i')[1]};
-	// char **strings = string;
-    printf("%s\n%s\n", string[0], string[1]);	
+	// ft_split("aazainaaliia" , 'a');
+	char *string[] = {ft_split("iizainalivak", 'i')[0],ft_split("iizainalivak", 'i')[1], ft_split("iizainalivak", 'i')[2], ft_split("iizainalivaki", 'i')[3]};
+	char **strings = string;
+    printf("0 string %s\n1 string %s\n2 string %s\n3 string %s\n", string[0], string[1],string[2],string[3]);	
 	// char string0[] = "zain";
 	// char string1[] = "ali";
 	// char string2[] = "vakil";
