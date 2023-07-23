@@ -6,7 +6,9 @@
 	],
 	"settings": {
 		"files.associations": {
-			"libft.h": "c"
+			"libft.h": "c",
+			"strings.h": "c",
+			"algorithm": "c"
 		}
 	}
 }

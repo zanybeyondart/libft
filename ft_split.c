@@ -1,81 +1,82 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <strings.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/23 10:44:03 by zvakil            #+#    #+#             */
+/*   Updated: 2023/07/23 10:44:08 by zvakil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+#include <stdio.h>
 
-int	chk_c(const char *s, char c)
+static char *fun(char *s, int len)
 {
-	int a;
-	a = ft_strlen(s);
-	if (s[a -1] == c)
-		return(1);
-	return(0);
+	char *s2 = (char*)malloc(sizeof(char) * (len + 1));
+	if (!s2)
+		return (NULL);
+	ft_strlcpy(s2, s, len + 1);
+	return (s2);
 }
 
-char *fun(char *s)
+char **ft_split(char const *s, char c)
 {
-	int a = 0;
-	char *s2;
-	while(s[a] != '\0')
-	a++;
-	a++;
-	s2 = (char*) malloc (sizeof(char) * a);
-	ft_strlcpy(s2, s, a);
-	return(s2);
-}
+	if (!s)
+		return (NULL);
 
-char	**ft_split(char const *s, char c)
-{
-	char *s2;
-	int len = strlen(s);
 	int a = 0;
 	int b = 0;
 	int d = 0;
 	char **result;
-	s2 = (char*) malloc (sizeof(char) * (len + 1));
-	if (!s2)
-	return(NULL);
-	ft_strlcpy(s2, s, len + 1);
-	while(a < len)
+
+	while (s[a] != '\0')
 	{
-	if (s2[a] == c)
-	s2[a] = '\0';
-	a++;
+		if (s[a] == c)
+			a++;
+		else
+		{
+			d++;
+			while (s[a] != c && s[a] != '\0')
+				a++;
+		}
 	}
-	a = 0;
-	while(s2[a] == '\0')
-	a++;	
-	b = a;
-	while(b <= len - (chk_c(s, c)))
-	{
-		if(s2[b] == '\0')
-		d++;
-		b++;
-	}
-	result = (char**) malloc (sizeof(char*) * (d));
+
+	result = (char**)malloc(sizeof(char*) * (d + 1));
 	if (!result)
-	return (NULL);
+		return (NULL);
+
+	a = 0;
 	b = 0;
-	while(a < len)
+	while (s[a] != '\0' && b < d)
 	{
-		result[b] = fun(s2 + a);
-		b++;
-		while (s2[a] != '\0')
-		a++;
-		a++;
+		if (s[a] == c)
+			a++;
+		else
+		{
+			int start = a;
+			while (s[a] != c && s[a] != '\0')
+				a++;
+			result[b] = fun((char*)s + start, a - start);
+			b++;
+		}
 	}
-	return(result);
+
+	result[b] = NULL;
+	return (result);
 }
 
-int main()
-{
-	// ft_split("aazainaaliia" , 'a');
-	char *string[] = {ft_split("iizainalivak", 'i')[0],ft_split("iizainalivak", 'i')[1], ft_split("iizainalivak", 'i')[2], ft_split("iizainalivaki", 'i')[3]};
-	char **strings = string;
-    printf("0 string %s\n1 string %s\n2 string %s\n3 string %s\n", string[0], string[1],string[2],string[3]);	
-	// char string0[] = "zain";
-	// char string1[] = "ali";
-	// char string2[] = "vakil";
-	// char *strings[] = {string0, string1, string2};
-    // printf("%s\n%s\n%s\n", strings[0], strings[1], strings[2]);
-}
+
+
+// int main()
+// {
+// 	int a = 0;
+// 	char **test;
+// 	test = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
+// 	while(test[a++] != NULL)
+// 	printf("%s\n", test[a]);
+// 	return(0);
+
+// }
