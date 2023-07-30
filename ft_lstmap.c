@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 19:19:51 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/29 19:19:52 by zvakil           ###   ########.fr       */
+/*   Created: 2023/07/30 09:21:54 by zvakil            #+#    #+#             */
+/*   Updated: 2023/07/30 13:44:32 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 
-void ft_putnbr_fd(int n, int fd)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int a = 0;
-	int sign;
-	if (n < 0)
+	t_list	*node;
+	t_list	*list;
+	if(!f || !lst)
+	return (NULL);
+	list = NULL;
+	while(!lst)
 	{
-	write(1, "-", 1);
-	n *= -1;
+		node = ft_lstnew(lst->content);
+		if (*list == NULL)
+			list = node;
+		else
+			list = ft_lstadd_back(&list, node);
+		lst = lst->new;
 	}
-	if(n >= 10)
-	ft_putnbr_fd(n / 10, fd);
-	a = n % 10 + '0';
-    write(fd, &a, 1);
-}
-
-int main()
-{
-	ft_putnbr_fd(-200265, 1);
+	ft_lstclear(&lst, del);
+	return(list);
 }

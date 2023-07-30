@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 19:19:51 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/29 19:19:52 by zvakil           ###   ########.fr       */
+/*   Created: 2023/07/30 09:18:23 by zvakil            #+#    #+#             */
+/*   Updated: 2023/07/30 09:21:08 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+Parameters lst: The address of a pointer to a node.
+f: The address of the function used to iterate on
+the list.
+Return value None
+External functs. None
+Description Iterates the list ’lst’ and applies the function
+’f’ on the content of each node.
 
-void ft_putnbr_fd(int n, int fd)
+
+
+void ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int a = 0;
-	int sign;
-	if (n < 0)
+	while(!lst)
 	{
-	write(1, "-", 1);
-	n *= -1;
+		f(lst->content);
+		lst = lst->next;
 	}
-	if(n >= 10)
-	ft_putnbr_fd(n / 10, fd);
-	a = n % 10 + '0';
-    write(fd, &a, 1);
-}
-
-int main()
-{
-	ft_putnbr_fd(-200265, 1);
 }

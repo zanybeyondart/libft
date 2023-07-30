@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 19:19:51 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/29 19:19:52 by zvakil           ###   ########.fr       */
+/*   Created: 2023/07/29 19:19:26 by zvakil            #+#    #+#             */
+/*   Updated: 2023/07/30 01:09:22 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-
-void ft_putnbr_fd(int n, int fd)
+typedef struct s_list
 {
-	int a = 0;
-	int sign;
-	if (n < 0)
+void *content;
+struct s_list *next;
+} t_list;
+
+void ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if(lst && new)
 	{
-	write(1, "-", 1);
-	n *= -1;
+	new->next= *lst;
+	*lst = new;	
 	}
-	if(n >= 10)
-	ft_putnbr_fd(n / 10, fd);
-	a = n % 10 + '0';
-    write(fd, &a, 1);
-}
-
-int main()
-{
-	ft_putnbr_fd(-200265, 1);
 }
