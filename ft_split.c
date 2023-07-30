@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char *fun(char *s, int len)
 {
@@ -22,16 +21,15 @@ static char *fun(char *s, int len)
 	return (s2);
 }
 
-char **ft_split(char const *s, char c)
+char    **ft_split(char const *s, char c)
 {
-	if (!s)
-		return (NULL);
-
 	int a = 0;
 	int b = 0;
 	int d = 0;
 	char **result;
 
+    if (!s)
+		return (NULL);
 	while (s[a] != '\0')
 	{
 		if (s[a] == c)
@@ -67,16 +65,3 @@ char **ft_split(char const *s, char c)
 	result[b] = NULL;
 	return (result);
 }
-
-
-
-// int main()
-// {
-// 	int a = 0;
-// 	char **test;
-// 	test = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
-// 	while(test[a++] != NULL)
-// 	printf("%s\n", test[a]);
-// 	return(0);
-
-// }

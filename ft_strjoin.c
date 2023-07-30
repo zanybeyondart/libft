@@ -10,29 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <strings.h>
-#include <stdlib.h>
-#include <stdio.h>
-char    *ft_strjoin(char const *s1, char const *s2)
-{
-    char *s3;
-    int a;
-    a = strlen(s1) + strlen(s2);
-    int b;
-    b = 0;
-    int c;
-    c = 0;
-    s3 = (char*) malloc ((a + 1) * sizeof(char));
-    while(s1[c] != '\0')
-        s3[b++] = s1[c++];
-    c = 0;
-    while(s2[c] != '\0')
-    s3[b++] = s2[c++];
-    s3[b] = '\0';
-    return(s3);
-}
+#include "libft.h"
 
-int main()
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    printf("%s\n", ft_strjoin("zain", "ali"));
+	char	*s3;
+	int		a;
+	int		b;
+	int 	c;
+	
+	a = strlen(s1) + strlen(s2);
+	b = 0;
+  	c = 0;
+	s3 = (char*) malloc ((a + 1) * sizeof(char));
+	if (!s3)
+		return NULL;
+	while (s1[c] != '\0')
+		s3[b++] = s1[c++];
+	c = 0;
+    while(s2[c] != '\0')
+		s3[b++] = s2[c++];
+	s3[b] = '\0';
+    return (s3);
 }

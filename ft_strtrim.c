@@ -11,28 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-// char	*ft_strtrim(char const *s1, char const *set)
-// {
-//    char *s3;
-//    int a = 0;
-//    int b;
-//    int c = 0;
-//    while(s1[a] != '\0')
-//    {
-// 	b = 0;
-//     while (set[b] != '\0')
-//     {
-//      if(set[b] == s1[a])
-// 	 {
-		
-// 	 }   
-//     }
-//    }
-// 	return((char*)s1);
-// }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -44,19 +22,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (s1 && set)
 	{
 		a = 0;
-		b = ft_strlen(s1);
+		b = ft_strlen(s1) - 1;
 		while (s1[a] && ft_strchr(set, s1[a]))
 			a++;
-		while (s1[b - 1] && ft_strchr(set, s1[end - 1]) && end > start)
-			end--;
-		result = (char *)malloc(sizeof(char) * (end - start + 1));
-		if (result)
-			ft_strlcpy(result, &s1[start], end - start + 1);
+		while (s1[b] && ft_strchr(set, s1[b]) && b > a)
+			b--;
+		str = (char *)malloc(sizeof(char) * (b - a + 1));
+		if (str)
+			ft_strlcpy(str, &s1[a], b - a + 1);
 	}
-	return (result);
+	return (str);
 }
-
-// int main()
-// {
-//     printf("%s\n", ft_strtrim("zainali", "ainali"));
-

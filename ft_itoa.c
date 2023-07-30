@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 char    *ft_itoa(int n)
@@ -19,14 +18,14 @@ char    *ft_itoa(int n)
 	int		b;
 	int		sign;
 	char	*s;
-	
+
 	a = 0;
 	sign = 1;
 	b = n;
-	if(n < 0)
+	if (n < 0)
 	{
-	sign = -1;
-	a = 1;
+		sign = -1;
+		a = 1;
 	}
 	while (b != 0)
     {
@@ -46,8 +45,8 @@ char    *ft_itoa(int n)
 	{
 		s[--a] = (n % 10) + '0';
 		n = n / 10;
-	}  
-    return(s);
+	}
+	return (s);
 }
 
 int main()
