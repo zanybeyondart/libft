@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:27:27 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/29 19:08:54 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/07/30 16:18:31 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 
 

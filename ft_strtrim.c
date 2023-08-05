@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:53:43 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/23 10:44:39 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/07/30 16:48:43 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (s1 && set)
 	{
 		a = 0;
-		b = ft_strlen(s1) - 1;
+		b = ft_strlen(s1);
 		while (s1[a] && ft_strchr(set, s1[a]))
 			a++;
-		while (s1[b] && ft_strchr(set, s1[b]) && b > a)
+		while (s1[b - 1] && ft_strchr(set, s1[b - 1]) && b > a)
 			b--;
 		str = (char *)malloc(sizeof(char) * (b - a + 1));
 		if (str)

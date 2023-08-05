@@ -1,18 +1,38 @@
-#include "libft.h"
+#include <strings.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+size_t	ft_mem_l(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	char			*str;
+	size_t	i;
+
+	if (len > strlen(s))
+		i = strlen(s) - start;
+	else
+		i = len + 1;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char		*str;
+	size_t		i;
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	str = (char *)malloc(sizeof(char) * len + 1);
-	if (str == NULL)
+	if (start > strlen(s))
+	{
+		str = (char *)malloc(sizeof(char) * 1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
+	str = (char *)malloc(sizeof(char) * ft_mem_l(s, start, len));
+	if (!str)
 		return (NULL);
-	while (i < len)
+	i = 0;
+	while (i < len && s[start + i] != '\0')
 	{
 		str[i] = s[start + i];
 		i++;
@@ -23,5 +43,6 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 
 int main()
 {
-	printf("%s\n", ft_strsub("fgcvgfcvn",50,30));
+	
+	printf("%s", ft_substr("zainalivakilwhatisthisshit", 50,30));
 }
