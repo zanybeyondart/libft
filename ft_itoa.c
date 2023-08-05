@@ -12,27 +12,30 @@
 
 #include "libft.h"
 
-char    *ft_itoa(int n)
+int checks(int b, int sign)
 {
-	int		a;
-	int		b;
-	int		sign;
-	char	*s;
-
-	a = 0;
-	sign = 1;
-	b = n;
-	if (n < 0)
-	{
-		sign = -1;
-		a = 1;
-	}
-	while (b != 0)
+    int a;
+    a = 0;
+    if(sign == -1)
+    a++;
+    while (b != 0)
     {
         b = b / 10;
         a++;
     }
-	s = (char*) malloc (sizeof(char) * (a + 1));
+    return(a);
+}
+
+char    *ft_itoa(int n)
+{
+	int		sign;
+	char	*s;
+
+	if (n < 0)
+	sign = -1;
+	else
+		sign = 1;
+	s = (char*) malloc (sizeof(char) * (checks(n, sign) + 1));
 	if(!s)
 		return (NULL);
 	s[a] = '\0';
