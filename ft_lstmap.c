@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 09:21:54 by zvakil            #+#    #+#             */
-/*   Updated: 2023/08/06 14:15:30 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/08/06 14:39:21 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*node;
 	t_list	*list;
-	if(!f || !lst)
-	return (NULL);
+
+	if (!f || !lst)
+		return (NULL);
 	list = NULL;
-	while(!lst)
+	while (lst)
 	{
-		node = ft_lstnew(lst->content);
+		node = ft_lstnew(f(lst->content));
 		if (list == NULL)
 			list = node;
 		else

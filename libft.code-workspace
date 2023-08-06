@@ -3,12 +3,5 @@
 		{
 			"path": "."
 		}
-	],
-	"settings": {
-		"files.associations": {
-			"libft.h": "c",
-			"strings.h": "c",
-			"algorithm": "c"
-		}
-	}
+	]
 }
