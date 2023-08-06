@@ -6,62 +6,62 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 19:19:20 by zvakil            #+#    #+#             */
-/*   Updated: 2023/08/06 12:01:48 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/08/06 12:50:46 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int checks(int b, int sign)
+int	checks(int b)
 {
-    int a;
-    a = 0;
-    if(sign == -1)
-    a++;
+	int	a;
+
+	a = 0;
+	if (b < 0)
+		a++;
 	if (b == 0)
-	return(1);
-	if (b == -2147483648)
-	return(10);
-    while (b != 0)
-    {
-        b = b / 10;
-        a++;
-    }
-    return(a);
+		return (1);
+	while (b != 0)
+	{
+		b = b / 10;
+		a++;
+	}
+	return (a);
 }
 
-char    *ft_itoa(int n)
+char	assign_char(int new, int n)
 {
-	int		sign;
+	char	f;
+
+	if (n < 0)
+		f = ((new % 10) * -1) + '0';
+	else
+		f = new % 10 + '0';
+	return (f);
+}
+
+char	*ft_itoa(int n)
+{
 	char	*s;
 	int		len;
-	
-	if (n < 0)
-	sign = -1;
-	else
-		sign = 1;
-	s = (char*) malloc (sizeof(char) * (checks(n, sign) + 1));
-	if(!s)
+	int		new;
+
+	new = n;
+	s = (char *) malloc (sizeof(char) * (checks(n) + 1));
+	if (!s)
 		return (NULL);
-	len = (checks(n, sign));
+	len = (checks(n));
 	s[len--] = '\0';
-	if (sign == -1)
-		n = n * sign;
-	while(len >= 0)
+	while (len >= 0)
 	{
-		if (sign == -1 && len == 0)
+		if (n < 0 && len == 0)
 		{
-		s[0] = '-';
-		break;
+			s[0] = '-';
+			break ;
 		}
-		s[len--] = (n % 10) + '0';
-		n = n / 10;
+		s[len--] = assign_char(new, n);
+		new /= 10;
 	}
 	return (s);
 }
-
-// int main()
-// {
-// 	printf("%s", ft_itoa(-2147483648LL));
-// }
