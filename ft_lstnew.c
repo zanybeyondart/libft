@@ -6,7 +6,7 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 19:19:08 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/29 19:19:09 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/08/05 23:34:59 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ t_list *ft_lstnew(void *content)
 int main()
 {
 	ft_lstnew("zainali");
-
 }
