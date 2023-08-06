@@ -6,19 +6,13 @@
 /*   By: zvakil <zvakil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 19:19:38 by zvakil            #+#    #+#             */
-/*   Updated: 2023/07/29 19:19:39 by zvakil           ###   ########.fr       */
+/*   Updated: 2023/08/06 13:00:58 by zvakil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Parameters c: The character to output.
-// fd: The file descriptor on which to write.
-// Return value None
-// External functs. write
-// Description Outputs the character ’c’ to the given file
-// descriptor.
+#include "libft.h"
 
-
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    write(fd, c, 1);
+	write (fd, &c, 1);
 }
